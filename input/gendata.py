@@ -17,6 +17,7 @@ logging.basicConfig(level=logging.INFO)
 
 _log = logging.getLogger(__name__)
 
+runname='Bute3d24'
 duration = 17
 initial = 0
 wind = 10  # m/s
@@ -26,10 +27,9 @@ f0 = 1e-4 * np.sin(lat * np.pi / 180) / np.sin(45 * np.pi / 180)
 Nsq0 = 3.44e-4
 tAlpha = 0.0e-4
 sBeta = 7.4e-4
-Nsqfac = 1.0
+Nsqfac = 2.0
 Nsq0 = Nsq0 * Nsqfac
 
-runname='Bute3d23'
 comments = f"""
 Three-d version more dz, more dy, of Bute15 with long wind forcing,
 No heat flux; no rbcs, actual bottom drag; turn off non hydrostatic

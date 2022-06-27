@@ -104,6 +104,10 @@ Does receiving basin matter?  Maybe I'm wrong and should just be using rbcs?
 37316768 Bute3d22
    - Nsq=2.0 of base Nsq
 
+37745767 Bute3d23
+   - Nsq constant =  Nsq0=0.000344
+   - constant wind forcing from begining.  Goal here is to get the time dependence.
+   Does the depth asymptote or does it keep getting deeper?
 
 
 
