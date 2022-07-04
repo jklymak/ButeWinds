@@ -16,13 +16,10 @@ logging.basicConfig(level=logging.INFO)
 
 _log = logging.getLogger(__name__)
 
-runname='Bute3d09'
+runname='Bute3d26'
 comments = """
-Three-d version more dz, more dy, of Bute15 with long wind forcing,
-no heat flux; no rbcs, actual bottom drag; turn off non hydrostatic
-slope sides a bit.  Wavy...  Add Leith viscosity with default values.
-Shorter dt, and shorter duration wind (4d).  Even bigger receiving
-basin with roughness in it.
+As Bute3d09 but two tracers, one w/ gas exchange, other without.
+
 """
 
 outdir0='../results/'+runname+'/'

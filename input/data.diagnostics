@@ -4,13 +4,14 @@
 # 3D variables.
  frequency(1)  = -3600,
  timePhase(1)  = 0,
- fields(1:7,1) = 'UVEL    ',
+ fields(1:8,1) = 'UVEL    ',
                  'VVEL    ',
                  'WVEL    ',
                  'THETA   ',
                  'SALT    ',
                  'PHIHYD  ',
                  'TRAC01  ',
+                 'TRAC02  ',
  filename(1)   = 'spinup'
 #
  filename(2)   = 'spinup2d'

@@ -31,3 +31,94 @@ Do I need variable viscosity to smooth things out in there?  Turn rbcs back on?
 - I should probably switch to not telescoping so soon.
 - in 3D it definitely ventilates to deeper, if we believe the response in the big basin?
 
+The mean flow problem is a bit strange because it sets up a definite sea-surface expression, and that then depends
+on the holding basin.  This is a surface wave, so its pretty hard to make the basin long enough to absorb.  The only
+way to really eliminate would be with SSH nudging.  We could make the receiving basin wider (in y) 40 km is still
+pretty small, but that starts getting computationally expensive for something that we dont' care about.
+
+Does receiving basin matter?  Maybe I'm wrong and should just be using rbcs?
+
+
+36783111 Bute3d09
+   - base case - 5 day burst, no heat forcing
+   - made receiving basin larger, slightly larger dz, 96 nodes.  Made receiving basin rougher as well.
+   Seems to do a good job of killing most KE in the basin.
+   36873905 New run
+   COMPLETED
+
+36851449  Bute3d10
+   - 5 day burst, yes heat forcing
+   - setp as above, but with negative heat flux.
+   - wnet unstable.  Prob need smaller dt...
+   - new run 3s 36873
+   - new run 2s 36905241 = unstable 3.3125 d
+      - not clear what is wrong here - its hydrostatic so maybe that is a problem?  CFL seems fine...
+   - 36909734: tryig with NH.  left at dt=2s...
+      - CFL still fine, still dying at 3.3125 d.
+   - 36918939: back to 3s, nonHydrostatic=.FALSE. but starting ealier?   Prob should look at a snap
+
+
+
+
+36851987 Bute3d11
+   - no heat flux 8-d burst
+   - unstable around 289800 = 13.4 days...
+   - 3s 36908786  unstable same time.  Must be wave hitting edge
+   - 2s 36911431
+
+36851935 Bute3d12
+   - no heat flux 3-d burst
+   - Still running, almost done
+
+37000785 Bute3d13
+   - 0.1 N/m^2, 5-d burst (versus 0.225 N/m^2)
+
+37007886 Bute3d14
+   - 0.025 N/m^2, 5-d burst (versus 0.225 N/m^2)
+
+37007928 Bute3d15
+   - 0.4 N/m^2, 5-d burst (versus 0.225 N/m^2)
+   - died at 11 days.  restarting at 10 d w 2 s:
+   - 37084886
+
+37191918 Bute3d16
+   - 0.156 N/m^2 (12.5 m/s)
+
+37193031 Bute3d17
+   - 0.225 N/m^2 (12.5 m/s), but f=0.71e-4 lat = 30
+   - Died early CFL
+
+37193100 Bute3d18
+   - 0.225 N/m^2 (12.5 m/s), but f=1.2e-4 lat = 60
+
+37195592 Buete3d19
+   Constant Nsq = 3.44 e-4.  Temperature advection is on, but it is passive (tAlpha=0)
+   I should check this one before running any more stratifications.
+
+37203346 Buete3d20
+   Back to variable Nsq (I hope).  f=0.
+
+37316729 Bute3d21
+   - Nsq=0.5 of base Nsq
+
+37316768 Bute3d22
+   - Nsq=2.0 of base Nsq
+
+37745767 Bute3d23
+   - Nsq constant =  Nsq0=0.000344
+   - constant wind forcing from begining.  Goal here is to get the time dependence.
+   Does the depth asymptote or does it keep getting deeper?
+
+37746015 Bute3d24
+   - Nsq constant =  Nsq0=0.000344 * 2
+
+37746132 Bute3d25
+   - Nsq constant =  Nsq0=0.000344 / 2
+
+
+
+
+
+
+
+
