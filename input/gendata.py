@@ -16,7 +16,7 @@ from local_utils import o2sat
 # import sys
 import argparse
 
-def gendata(runnumber, NsqFac=1.0, wind=20.0, windL=60e3, fjordL=180e3, fjordW=3e3, fjordD=200):
+def gendata(runnumber, NsqFac=1.0, wind=20.0, windL=60e3, fjordL=180e3, fjordW=3e3, fjordD=200, endTime=1036800):
 
   logging.basicConfig(level=logging.INFO)
 
@@ -129,6 +129,7 @@ def gendata(runnumber, NsqFac=1.0, wind=20.0, windL=60e3, fjordL=180e3, fjordW=3
   replace_data('data', 'f0', f'{f0:1.3e}')
   replace_data('data', 'tAlpha', f'{tAlpha:1.3e}')
   replace_data('data', 'sBlpha', f'{sBeta:1.3e}')
+  replace_data('data', 'endTime', f'{endTime:d}')
 
   shutil.copy('data', outdir+'/data')
   shutil.copy('eedata', outdir)
@@ -547,11 +548,12 @@ if __name__ == "__main__":
   parser = argparse.ArgumentParser()
 
   parser.add_argument('--NsqFac', nargs='?', const=1.0, type=float)
-  parser.add_argument('--wind', nargs='?', const='20.0', type=float)
+  parser.add_argument('--wind', nargs='?', const=20.0, type=float)
   parser.add_argument('--runnumber', type=int)
-  parser.add_argument('--windL', nargs='?', const='60.0e3', type=float)
-  parser.add_argument('--fjordL', nargs='?', const='180.0e3', type=float)
-  parser.add_argument('--fjordD', nargs='?', const='200', type=float)
+  parser.add_argument('--windL', nargs='?', const=60.0e3, type=float)
+  parser.add_argument('--fjordL', nargs='?', const=180.0e3, type=float)
+  parser.add_argument('--fjordD', nargs='?', const=200, type=float)
+  parser.add_argument('--endTime', nargs='?', const=1_036_800, type=float)
 
   args = parser.parse_args()
 

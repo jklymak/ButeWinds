@@ -4,7 +4,7 @@ import subprocess
 
 runModelName = 'runModelCedar.sh'
 
-for todo in [f'Bute3d{runno}' for runno in range(80, 84)]:
+for todo in [f'Bute3d{runno}' for runno in range(84, 88)]:
     outstr = f"{todo} queued "
     res = subprocess.check_output(["sbatch", f"--job-name={todo}",
                         f"{runModelName}"])

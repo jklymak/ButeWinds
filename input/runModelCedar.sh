@@ -4,7 +4,7 @@
 #SBATCH --mail-type=ALL
 #SBATCH --nodes=2
 #SBATCH --ntasks-per-node=48
-#SBATCH --time=04:20:00
+#SBATCH --time=38:20:00
 #SBATCH --mem=0
 
 #       SBATCH --time=38:20:00
@@ -17,7 +17,7 @@
 # module load netcdf-fortran-mpi/4.5.2
 # module load python/3.9.6
 
-start=950400
+start=0
 stop=1036800
 dt=6
 

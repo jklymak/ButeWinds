@@ -250,6 +250,9 @@ python gendata.py --runnumber=85 --wind=20.0 --NsqFac=2 --windL=1e8 --fjordL=100
 python gendata.py --runnumber=86 --wind=10.0 --NsqFac=1 --windL=1e8 --fjordL=100e3 --fjordD=100
 python gendata.py --runnumber=87 --wind=10.0 --NsqFac=1 --windL=1e8 --fjordL=100e3 --fjordD=150
 
+## Runs that I will run, and then restart with wind turned off.
+
+python gendata.py --runnumber=90 --wind=10.0 --NsqFac=1 --windL=200e3 --fjordL=120e3 --fjordD=200 --endTime=432000
 
 
 
