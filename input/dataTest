@@ -4,7 +4,7 @@
 #
 # Continuous equation parameters
  &PARM01
- debuglevel=3,
+ debuglevel=1,
  tRefFile='../indata/TRef.bin',
  sRef= 400*35.,
  viscAz=1.E-5,

@@ -18,7 +18,7 @@
 # module load python/3.9.6
 
 start=0
-stop=1036800
+stop=432000
 dt=6
 
 cd ${SLURM_SUBMIT_DIR}
