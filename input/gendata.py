@@ -498,6 +498,7 @@ def gendata(runnumber, NsqFac=1.0, wind=20.0, windL=60e3, fjordL=180e3, fjordW=3
   else:
     O2Sat = o2sat(T0, S0)
     satprofile = [100, 50, 50]
+    satprofile = [50, 50, 50]
     zsat = [0, 30, 500]
     O2z = np.interp(z, zsat, satprofile) * O2Sat / 100
     O2 = O2 * 0 + O2z[:, np.newaxis, np.newaxis]
