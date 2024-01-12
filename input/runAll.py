@@ -6,7 +6,7 @@ timest='19:20:00'
 
 runModelName = 'runModelCedar.sh'
 
-for todo in [f'Bute3d{runno}' for runno in range(90, 91)]:
+for todo in [f'Bute3d{runno}' for runno in range(90, 93)]:
     outstr = f"{todo} queued "
     res = subprocess.check_output(["sbatch", f"--job-name={todo}",
                                    f"--time={timest}",
