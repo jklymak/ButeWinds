@@ -261,6 +261,8 @@ python gendata_pickup_no_wind.py Bute3d90
 python gendata_pickup_no_wind.py Bute3d91
 python gendata_pickup_no_wind.py Bute3d92
 
+# run these with `runAllpickup.py`.
+
 
 
 
