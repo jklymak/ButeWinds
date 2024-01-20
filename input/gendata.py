@@ -561,5 +561,6 @@ if __name__ == "__main__":
   if not args.runnumber:
     raise RuntimeError('must specify a runnumber')
 
-  gendata(args.runnumber, NsqFac=args.NsqFac, wind=args.wind, windL=args.windL, fjordL=args.fjordL, fjordD=args.fjordD)
+  gendata(args.runnumber, NsqFac=args.NsqFac, wind=args.wind,
+          windL=args.windL, fjordL=args.fjordL, fjordD=args.fjordD)
 
