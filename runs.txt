@@ -256,7 +256,6 @@ python gendata.py --runnumber=87 --wind=10.0 --NsqFac=1 --windL=1e8 --fjordL=100
 python gendata.py --runnumber=90 --wind=10.0 --NsqFac=1 --windL=200e3 --fjordL=120e3 --fjordD=200 --endTime=432000
 python gendata.py --runnumber=91 --wind=15.0 --NsqFac=1 --windL=200e3 --fjordL=120e3 --fjordD=200 --endTime=432000
 python gendata.py --runnumber=92 --wind=20.0 --NsqFac=1 --windL=200e3 --fjordL=120e3 --fjordD=200 --endTime=432000
-
 python gendata.py --runnumber=93 --wind=30.0 --NsqFac=1 --windL=200e3 --fjordL=120e3 --fjordD=200 --endTime=432000
 
 python gendata_pickup_no_wind.py Bute3d90
@@ -264,3 +263,8 @@ python gendata_pickup_no_wind.py Bute3d91
 python gendata_pickup_no_wind.py Bute3d92
 
 # run these with `runAllpickup.py`.
+
+python gendata.py --runnumber=94 --wind=10.0 --NsqFac=1 --windL=60e3 --fjordL=120e3 --fjordD=200 --endTime=432000
+python gendata.py --runnumber=95 --wind=15.0 --NsqFac=1 --windL=60e3 --fjordL=120e3 --fjordD=200 --endTime=432000
+python gendata.py --runnumber=96 --wind=20.0 --NsqFac=1 --windL=60e3 --fjordL=120e3 --fjordD=200 --endTime=432000
+python gendata.py --runnumber=97 --wind=30.0 --NsqFac=1 --windL=60e3 --fjordL=120e3 --fjordD=200 --endTime=432000
