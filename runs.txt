@@ -274,3 +274,9 @@ python gendata_pickup_no_wind.py Bute3d94
 python gendata_pickup_no_wind.py Bute3d95
 python gendata_pickup_no_wind.py Bute3d96
 python gendata_pickup_no_wind.py Bute3d97
+
+python gendata.py --runnumber=100 --wind=30.0 --NsqFac=1 --windL=120e3 --fjordL=120e3 --fjordD=200 --endTime=432000
+
+python gendata.py --runnumber=101 --wind=30.0 --NsqFac=2 --windL=120e3 --fjordL=120e3 --fjordD=200 --endTime=432000
+python gendata.py --runnumber=101 --wind=30.0 --NsqFac=0.5 --windL=120e3 --fjordL=120e3 --fjordD=200 --endTime=432000
+
