@@ -30,7 +30,7 @@ def gendata(runnumber, NsqFac=1.0, wind=20.0, windL=60e3, fjordL=180e3, fjordW=3
   f0 = 1e-4 * np.sin(lat * np.pi / 180) / np.sin(45 * np.pi / 180)
   wavey = False
   Nsq0 = 3.44e-4
-  NsqConstant = True
+  NsqConstant = False
   tAlpha = 2.0e-4
   sBeta = 7.4e-4
 
