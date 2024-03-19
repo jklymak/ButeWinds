@@ -30,7 +30,7 @@ iters = np.arange(0, lasttime, 3600, dtype='int')
 
 with xmitgcm.open_mdsdataset(f'../results/{runname}/input/', endian='<',
                              iters=iters, prefix=['spinup', 'spinup2d']) as ds:
-    ds['pden'] = ds.THETA * -0.0 + ds.SALT * 0.75
+    ds['pden'] = ds.THETA * -0.2 + ds.SALT * 0.75
 
     pden0 = ds.pden.isel(time=0, XC=100, YC=120)
     z = pden0.Z.values

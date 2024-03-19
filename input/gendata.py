@@ -16,7 +16,8 @@ from local_utils import o2sat
 # import sys
 import argparse
 
-def gendata(runnumber, NsqFac=1.0, wind=20.0, windL=60e3, fjordL=180e3, fjordW=3e3, fjordD=200, endTime=1036800):
+def gendata(runnumber, NsqFac=1.0, wind=20.0, windL=60e3, fjordL=180e3, fjordW=3e3, fjordD=200, endTime=1036800,
+            NsqConstant=True, NsqScale=None):
 
   logging.basicConfig(level=logging.INFO)
 
@@ -30,7 +31,13 @@ def gendata(runnumber, NsqFac=1.0, wind=20.0, windL=60e3, fjordL=180e3, fjordW=3
   f0 = 1e-4 * np.sin(lat * np.pi / 180) / np.sin(45 * np.pi / 180)
   wavey = False
   Nsq0 = 3.44e-4
-  NsqConstant = False
+  NsqConstant = NsqConstant
+  NsqScale = NsqScale
+  if NsqScale is not None:
+    NsqConstant = False
+    NsqExp = True
+  else:
+    NsqExp = False
   tAlpha = 2.0e-4
   sBeta = 7.4e-4
 
@@ -333,7 +340,7 @@ def gendata(runnumber, NsqFac=1.0, wind=20.0, windL=60e3, fjordL=180e3, fjordW=3
   except IndexError:
     pass
 
-  if NsqConstant:
+  if NsqConstant or NsqExp:
     T0 = T0 * 0 + 8.9
 
   with open(indir+"/TRef.bin", "wb") as f:
@@ -348,7 +355,7 @@ def gendata(runnumber, NsqFac=1.0, wind=20.0, windL=60e3, fjordL=180e3, fjordW=3
   Temp = np.broadcast_to(T0[:, np.newaxis, np.newaxis], (nz, ny, nx ))
 
 
-  if NsqConstant:
+  if NsqConstant or NsqExp:
     if False:
 
       inx = x<100e3
@@ -371,7 +378,7 @@ def gendata(runnumber, NsqFac=1.0, wind=20.0, windL=60e3, fjordL=180e3, fjordW=3
   # salinity profile...
   #
   # FRom
-  if not NsqConstant:
+  if (not NsqConstant) and (not NsqExp) :
     s = np.array([15, 15, 29.1, 29.6, 30.1, 30.6, 30.66, 30.66])
     S0 =  30.6 - 15*np.exp(-z / 20)
 
@@ -382,6 +389,11 @@ def gendata(runnumber, NsqFac=1.0, wind=20.0, windL=60e3, fjordL=180e3, fjordW=3
       S0[z>=220] = S0[z>=220] - S0[z>=220][0] + S0[z<220][-1]
     except IndexError:
       pass
+  elif NsqExp:
+    Nsq = np.exp(-z/ NsqScale)
+    Nsq = Nsq * fjordD / NsqScale / (1 - np.exp(-fjordD / NsqScale)) * Nsq0
+
+    S0 = 20 + Nsq / sBeta / 9.81
   else:
     # constant Nsq case
     S0 = 20 + z * Nsq0 / sBeta / 9.81
@@ -555,6 +567,7 @@ if __name__ == "__main__":
   parser.add_argument('--fjordL', nargs='?', const=180.0e3, type=float)
   parser.add_argument('--fjordD', nargs='?', const=200, type=float)
   parser.add_argument('--endTime', nargs='?', const=1_036_800, type=float)
+  parser.add_argument('--NsqScale', nargs='?', const=None, type=float)
 
   args = parser.parse_args()
 
@@ -562,5 +575,6 @@ if __name__ == "__main__":
     raise RuntimeError('must specify a runnumber')
 
   gendata(args.runnumber, NsqFac=args.NsqFac, wind=args.wind,
-          windL=args.windL, fjordL=args.fjordL, fjordD=args.fjordD)
+          windL=args.windL, fjordL=args.fjordL, fjordD=args.fjordD,
+          NsqScale=args.NsqScale)
 
