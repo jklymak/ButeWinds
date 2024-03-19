@@ -392,7 +392,7 @@ def gendata(runnumber, NsqFac=1.0, wind=20.0, windL=60e3, fjordL=180e3, fjordW=3
   elif NsqExp:
     Nsq = np.exp(-z/ NsqScale)
     Nsq = Nsq * fjordD / NsqScale / (1 - np.exp(-fjordD / NsqScale)) * Nsq0
-
+    print('Total: ', np.sum(Nsq*dz) / np.sum(dz))
     S0 = 20 + Nsq / sBeta / 9.81
   else:
     # constant Nsq case
