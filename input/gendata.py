@@ -390,10 +390,11 @@ def gendata(runnumber, NsqFac=1.0, wind=20.0, windL=60e3, fjordL=180e3, fjordW=3
     except IndexError:
       pass
   elif NsqExp:
-    Nsq = np.exp((-fjordD + z)/ NsqScale)
+    print(z)
+    Nsq = np.exp((-z)/ NsqScale)
     Nsq = Nsq * fjordD / NsqScale / (1 - np.exp(-fjordD / NsqScale)) * Nsq0
     print('Total: ', np.sum(Nsq*dz) / np.sum(dz))
-    S0 = 20 + Nsq / sBeta / 9.81
+    S0 = 20 - Nsq / sBeta / 9.81
   else:
     # constant Nsq case
     S0 = 20 + z * Nsq0 / sBeta / 9.81
@@ -408,10 +409,6 @@ def gendata(runnumber, NsqFac=1.0, wind=20.0, windL=60e3, fjordL=180e3, fjordW=3
   plt.clf()
   plt.plot(S0, z)
 
-  try:
-    plt.plot(s, zs, 'd' )
-  except:
-    pass
   plt.savefig(outdir+'/figs/SO.png')
 
   S = np.broadcast_to(S0[:, np.newaxis, np.newaxis], (nz, ny, nx ))
