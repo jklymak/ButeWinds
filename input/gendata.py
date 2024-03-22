@@ -392,14 +392,14 @@ def gendata(runnumber, NsqFac=1.0, wind=20.0, windL=60e3, fjordL=180e3, fjordW=3
   elif NsqExp:
     print(z)
     Nsq = np.exp((-z)/ NsqScale)
-    Nsq = Nsq * fjordD / NsqScale / (1 - np.exp(-fjordD / NsqScale)) * Nsq0 * NsqFac
+    Nsq = Nsq * fjordD / NsqScale / (1 - np.exp(-fjordD / NsqScale)) * Nsq0
     print('Total: ', np.sum(Nsq*dz) / np.sum(dz))
     S0 = 20 + np.cumsum(Nsq / sBeta / 9.81 * dz)
   else:
     # constant Nsq case
     S0 = 20 + z * Nsq0 / sBeta / 9.81
     # make gradient larger if Nsqfac....
-    S0 = S0[0] + (S0 - S0[0]) * NsqFac
+    S0 = S0[0] + (S0 - S0[0])
 
 
   with open(indir+"/SRef.bin", "wb") as f:
