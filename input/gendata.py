@@ -44,15 +44,14 @@ def gendata(runnumber, NsqFac=1.0, wind=20.0, windL=60e3, fjordL=180e3, fjordW=3
   # Note this still works
   Nsq0 = Nsq0 * NsqFac
 
-  runname = f'Bute3d{runnumber}'
+  runname = f'Bute3dNar{runnumber}'
   comments = f"""
-  As run 43.  Tau={wind**2*1e-3} N/m^2 ({wind} m/s)
+  Tau={wind**2*1e-3} N/m^2 ({wind} m/s)
   Lat = {lat}; f={f0:1.3e}
   Variable Nsq; steady forcing....
   advschemes = 77 for both salt and temp
-  Variable Nsq, Temperature passive, but set to something that will
+  Exponential Nsq, Temperature passive, but set to something that will
   have reasonable flux.  Can't vary in space!  8.9 degrees C about right.
-
   """
 
   outdir0='../results/'+runname+'/'
