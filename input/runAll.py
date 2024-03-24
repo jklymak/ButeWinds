@@ -1,12 +1,12 @@
 import os
 import subprocess
 
-timest='19:20:00'
+timest='24:20:00'
 ### SBATCH --time=38:20:00
 
-runModelName = 'runModelCedar.sh'
+runModelName = 'runModelNarval.sh'
 
-for todo in [f'Bute3d{runno}' for runno in range(110, 114)]:
+for todo in [f'Bute3dNar{runno}' for runno in range(110, 114)]:
     outstr = f"{todo} queued "
     res = subprocess.check_output(["sbatch", f"--job-name={todo}",
                                    f"--time={timest}",
