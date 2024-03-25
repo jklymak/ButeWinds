@@ -13,7 +13,8 @@ pwd
 
 top=${SLURM_JOB_NAME}
 
-source /home/jklymak/venvs/butewind/bin/activate
+# source /home/jklymak/venvs/butewind/bin/activate
+source ~/venvs/bute_venv_narval/bin/activate
 
 printf "done activate"
 echo `which python`

@@ -398,9 +398,6 @@ def gendata(runnumber, NsqFac=1.0, wind=20.0, windL=60e3, fjordL=180e3, fjordW=3
     # constant Nsq case
     S0 = 20 + z * Nsq0 / sBeta / 9.81
 
-  # make gradient larger if Nsqfac....
-  S0 = S0[0] + (S0 - S0[0]) * NsqFac
-
   with open(indir+"/SRef.bin", "wb") as f:
     S0.tofile(f)
   print(S0)
