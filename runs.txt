@@ -283,6 +283,9 @@ python gendata.py --runnumber=104 --wind=5.0 --NsqFac=1 --windL=60e3 --fjordL=60
 python gendata.py --runnumber=105 --wind=10.0 --NsqFac=0.5 --windL=60e3 --fjordL=60e3 --fjordD=200 --endTime=432000
 python gendata.py --runnumber=106 --wind=5.0 --NsqFac=0.5 --windL=60e3 --fjordL=60e3 --fjordD=200 --endTime=432000
 
+
+# note NsqFac is fixed here and these are the actual NsqFacs:
+
 python gendata.py --runnumber=110 --wind=20.0 --NsqFac=1 --windL=60e3 --fjordL=60e3 --fjordD=200 --NsqScale=50 --endTime=432100
 python gendata.py --runnumber=111 --wind=20.0 --NsqFac=1 --windL=60e3 --fjordL=60e3 --fjordD=200 --NsqScale=25 --endTime=432100
 python gendata.py --runnumber=112 --wind=20.0 --NsqFac=4 --windL=60e3 --fjordL=60e3 --fjordD=200 --NsqScale=50 --endTime=432100
