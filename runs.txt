@@ -292,3 +292,11 @@ python gendata.py --runnumber=112 --wind=20.0 --NsqFac=4 --windL=60e3 --fjordL=6
 python gendata.py --runnumber=113 --wind=20.0 --NsqFac=4 --windL=60e3 --fjordL=60e3 --fjordD=200 --NsqScale=25 --endTime=432100
 python gendata.py --runnumber=114 --wind=20.0 --NsqFac=0.25 --windL=60e3 --fjordL=60e3 --fjordD=200 --NsqScale=50 --endTime=432100
 python gendata.py --runnumber=115 --wind=20.0 --NsqFac=0.25 --windL=60e3 --fjordL=60e3 --fjordD=200 --NsqScale=25 --endTime=432100
+python gendata.py --runnumber=116 --wind=20.0 --NsqFac=0.5 --windL=60e3 --fjordL=60e3 --fjordD=200 --NsqScale=50 --endTime=432100
+python gendata.py --runnumber=117 --wind=20.0 --NsqFac=0.5 --windL=60e3 --fjordL=60e3 --fjordD=200 --NsqScale=25 --endTime=432100
+
+python gendata.py --runnumber=118 --wind=20.0 --NsqFac=1 --windL=60e3 --fjordL=60e3 --fjordD=200 --NsqScale=37.5 --endTime=432100
+python gendata.py --runnumber=119 --wind=20.0 --NsqFac=4 --windL=60e3 --fjordL=60e3 --fjordD=200 --NsqScale=37.5 --endTime=432100
+python gendata.py --runnumber=120 --wind=20.0 --NsqFac=0.5 --windL=60e3 --fjordL=60e3 --fjordD=200 --NsqScale=37.5 --endTime=432100
+
+
