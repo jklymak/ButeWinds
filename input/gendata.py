@@ -31,9 +31,12 @@ def gendata(runnumber, NsqFac=1.0, wind=20.0, windL=60e3, fjordL=180e3, fjordW=3
   f0 = 1e-4 * np.sin(lat * np.pi / 180) / np.sin(45 * np.pi / 180)
   wavey = False
   Nsq0 = 3.44e-4
-  NsqConstant = NsqConstant
-  NsqScale = NsqScale
-  if NsqScale is not None:
+  NsqPiece = False
+  if NsqConstant == 'piece':
+    NsqConstant = False
+    NsqExp = False
+    NsqPiece = True
+  elif NsqScale is not None:
     NsqConstant = False
     NsqExp = True
   else:
@@ -339,7 +342,7 @@ def gendata(runnumber, NsqFac=1.0, wind=20.0, windL=60e3, fjordL=180e3, fjordW=3
   except IndexError:
     pass
 
-  if NsqConstant or NsqExp:
+  if NsqConstant or NsqExp or NsqPiece:
     T0 = T0 * 0 + 8.9
 
   with open(indir+"/TRef.bin", "wb") as f:
@@ -354,7 +357,7 @@ def gendata(runnumber, NsqFac=1.0, wind=20.0, windL=60e3, fjordL=180e3, fjordW=3
   Temp = np.broadcast_to(T0[:, np.newaxis, np.newaxis], (nz, ny, nx ))
 
 
-  if NsqConstant or NsqExp:
+  if NsqConstant or NsqExp or NsqPiece:
     if False:
 
       inx = x<100e3
@@ -377,7 +380,22 @@ def gendata(runnumber, NsqFac=1.0, wind=20.0, windL=60e3, fjordL=180e3, fjordW=3
   # salinity profile...
   #
   # FRom
-  if (not NsqConstant) and (not NsqExp) :
+  if NsqConstant:
+    S0 = 20 + z * Nsq0 / sBeta / 9.81
+  elif NsqPiece:
+    Nsq = 0 * z + Nsq0
+    Nsq[(z>20) & (z<80)] = Nsq0 / 3.0
+    S0 = 20 + np.cumsum(Nsq / sBeta / 9.81 * dz)
+
+  elif NsqExp:
+    print(z)
+    Nsq = np.exp((-z)/ NsqScale)
+    Nsq = Nsq * fjordD / NsqScale / (1 - np.exp(-fjordD / NsqScale)) * Nsq0
+    print('Total: ', np.sum(Nsq*dz) / np.sum(dz))
+    S0 = 20 + np.cumsum(Nsq / sBeta / 9.81 * dz)
+
+  else:
+    # realistic
     s = np.array([15, 15, 29.1, 29.6, 30.1, 30.6, 30.66, 30.66])
     S0 =  30.6 - 15*np.exp(-z / 20)
 
@@ -388,15 +406,8 @@ def gendata(runnumber, NsqFac=1.0, wind=20.0, windL=60e3, fjordL=180e3, fjordW=3
       S0[z>=220] = S0[z>=220] - S0[z>=220][0] + S0[z<220][-1]
     except IndexError:
       pass
-  elif NsqExp:
-    print(z)
-    Nsq = np.exp((-z)/ NsqScale)
-    Nsq = Nsq * fjordD / NsqScale / (1 - np.exp(-fjordD / NsqScale)) * Nsq0
-    print('Total: ', np.sum(Nsq*dz) / np.sum(dz))
-    S0 = 20 + np.cumsum(Nsq / sBeta / 9.81 * dz)
-  else:
-    # constant Nsq case
-    S0 = 20 + z * Nsq0 / sBeta / 9.81
+
+
 
   with open(indir+"/SRef.bin", "wb") as f:
     S0.tofile(f)
@@ -561,6 +572,7 @@ if __name__ == "__main__":
   parser.add_argument('--fjordD', nargs='?', const=200, type=float)
   parser.add_argument('--endTime', nargs='?', const=1_036_800, type=float)
   parser.add_argument('--NsqScale', nargs='?', const=None, type=float)
+  parser.add_argument('--NsqConstant', nargs='?', const=True, type=str)
 
   args = parser.parse_args()
 
@@ -569,5 +581,5 @@ if __name__ == "__main__":
 
   gendata(args.runnumber, NsqFac=args.NsqFac, wind=args.wind,
           windL=args.windL, fjordL=args.fjordL, fjordD=args.fjordD,
-          NsqScale=args.NsqScale)
+          NsqScale=args.NsqScale, NsqConstant=args.NsqConstant)
 
