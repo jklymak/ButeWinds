@@ -299,4 +299,15 @@ python gendata.py --runnumber=118 --wind=20.0 --NsqFac=1 --windL=60e3 --fjordL=6
 python gendata.py --runnumber=119 --wind=20.0 --NsqFac=4 --windL=60e3 --fjordL=60e3 --fjordD=200 --NsqScale=37.5 --endTime=432100
 python gendata.py --runnumber=120 --wind=20.0 --NsqFac=0.5 --windL=60e3 --fjordL=60e3 --fjordD=200 --NsqScale=37.5 --endTime=432100
 
+# versions with step changes in stratification:
 
+
+python gendata.py --runnumber=121 --wind=20.0 --NsqFac=1 --windL=60e3 --fjordL=60e3 --fjordD=200 --NsqConstant="piece" --endTime=432100
+python gendata.py --runnumber=122 --wind=20.0 --NsqFac=4 --windL=60e3 --fjordL=60e3 --fjordD=200 --NsqConstant="piece" --endTime=432100
+python gendata.py --runnumber=123 --wind=20.0 --NsqFac=0.25 --windL=60e3 --fjordL=60e3 --fjordD=200 --NsqConstant="piece" --endTime=432100
+
+# With a thicker (40m) upper layer.
+
+python gendata.py --runnumber=124 --wind=20.0 --NsqFac=1 --windL=60e3 --fjordL=60e3 --fjordD=200 --NsqConstant="piece" --endTime=432100
+python gendata.py --runnumber=125 --wind=20.0 --NsqFac=4 --windL=60e3 --fjordL=60e3 --fjordD=200 --NsqConstant="piece" --endTime=432100
+python gendata.py --runnumber=126 --wind=20.0 --NsqFac=0.25 --windL=60e3 --fjordL=60e3 --fjordD=200 --NsqConstant="piece" --endTime=432100

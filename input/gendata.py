@@ -384,7 +384,7 @@ def gendata(runnumber, NsqFac=1.0, wind=20.0, windL=60e3, fjordL=180e3, fjordW=3
     S0 = 20 + z * Nsq0 / sBeta / 9.81
   elif NsqPiece:
     Nsq = 0 * z + Nsq0
-    Nsq[(z>20) & (z<80)] = Nsq0 / 3.0
+    Nsq[(z>40) & (z<80)] = Nsq0 / 3.0
     S0 = 20 + np.cumsum(Nsq / sBeta / 9.81 * dz)
 
   elif NsqExp:
