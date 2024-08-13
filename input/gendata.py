@@ -18,7 +18,7 @@ import argparse
 
 def gendata(runnumber, NsqFac=1.0, wind=20.0, windL=60e3, fjordL=180e3, fjordW=3e3, fjordD=200, endTime=1036800,
             NsqConstant=True, NsqScale=None, infinitex=False,
-            infinitey=False, lat=45, Qnetmax=None):
+            infinitey=False, lat=45, Qnetmax=0):
 
   logging.basicConfig(level=logging.INFO)
 
