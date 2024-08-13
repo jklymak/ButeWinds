@@ -286,7 +286,7 @@ def gendata(runnumber, NsqFac=1.0, wind=20.0, windL=60e3, fjordL=180e3, fjordW=3
     for ind in range(nx):
       d[:, ind] = d[:, 100]
   if infinitey:
-    d = 0*d + fjordD
+    d = 0*d - fjordD
 
 
   with open(indir+"/topog.bin", "wb") as f:
