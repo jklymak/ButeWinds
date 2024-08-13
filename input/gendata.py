@@ -296,11 +296,13 @@ def gendata(runnumber, NsqFac=1.0, wind=20.0, windL=60e3, fjordL=180e3, fjordW=3
 
   _log.info(np.shape(d))
 
-  fig, ax = plt.subplots(2,1)
+  fig, ax = plt.subplots(3,1)
   _log.info('%s %s', np.shape(x), np.shape(d))
   print(y)
   ax[0].plot(x/1.e3,d[int(ny/2),:].T)
   pcm=ax[1].pcolormesh(x/1.e3,y/1.e3,d,rasterized=True)
+
+  ax[2].plot(y/1e3, d[:, 100])
   #ax[1].set_xlim([0, 200])
   #ax[1].set_ylim([0, 4])
   fig.colorbar(pcm,ax=ax[1])
