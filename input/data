@@ -17,7 +17,7 @@
  diffKzS=1.E-5,
  implicitDiffusion=.TRUE.,
  implicitViscosity=.TRUE.,
- f0=0.000e+00,
+ f0=1.000e-04,
  beta=0.E-11,
  eosType='LINEAR',
  tAlpha=2.000e-04,
