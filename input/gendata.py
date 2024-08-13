@@ -283,10 +283,8 @@ def gendata(runnumber, NsqFac=1.0, wind=20.0, windL=60e3, fjordL=180e3, fjordW=3
 
   # ignore most of above if infinitex:
   if infinitex:
-    d[0, :] = 0
     for ind in range(nx):
       d[:, ind] = d[:, 100]
-
 
 
   with open(indir+"/topog.bin", "wb") as f:
@@ -303,6 +301,7 @@ def gendata(runnumber, NsqFac=1.0, wind=20.0, windL=60e3, fjordL=180e3, fjordW=3
   pcm=ax[1].pcolormesh(x/1.e3,y/1.e3,d,rasterized=True)
 
   ax[2].plot(y/1e3, d[:, 100])
+  ax[2].set_xlim([-20, 20])
   #ax[1].set_xlim([0, 200])
   #ax[1].set_ylim([0, 4])
   fig.colorbar(pcm,ax=ax[1])
