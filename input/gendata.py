@@ -488,7 +488,7 @@ def gendata(runnumber, NsqFac=1.0, wind=20.0, windL=60e3, fjordL=180e3, fjordW=3
   with open(indir+'taux.bin', 'wb') as f:
       tau.tofile(f)
 
-  if Qnetmax:
+  if Qnetmax is not None:
     ################################
     # external heat flux
     Q = tau / taumax * Qnetmax
