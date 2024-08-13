@@ -18,7 +18,7 @@ import argparse
 
 def gendata(runnumber, NsqFac=1.0, wind=20.0, windL=60e3, fjordL=180e3, fjordW=3e3, fjordD=200, endTime=1036800,
             NsqConstant=True, NsqScale=None, infinitex=False,
-            infinitey=False):
+            infinitey=False, lat=45):
 
   logging.basicConfig(level=logging.INFO)
 
@@ -28,7 +28,6 @@ def gendata(runnumber, NsqFac=1.0, wind=20.0, windL=60e3, fjordL=180e3, fjordW=3
   initial = False
   # wind = wind  # m/s *3.6 to get km/h, wind**2 / 1000 to get stress
   uw = wind
-  lat = 45
   f0 = 1e-4 * np.sin(lat * np.pi / 180) / np.sin(45 * np.pi / 180)
   wavey = False
   Nsq0 = 3.44e-4
