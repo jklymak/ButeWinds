@@ -6,7 +6,7 @@ timest='24:20:00'
 
 runModelName = 'runModelNarval.sh'
 
-for todo in [f'Bute3dNar{runno}' for runno in range(123, 124)]:
+for todo in [f'Bute3dNar{runno}' for runno in range(124, 127)]:
     outstr = f"{todo} queued "
     res = subprocess.check_output(["sbatch", f"--job-name={todo}",
                                    f"--time={timest}",
