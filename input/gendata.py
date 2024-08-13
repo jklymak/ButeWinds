@@ -18,7 +18,7 @@ import argparse
 
 def gendata(runnumber, NsqFac=1.0, wind=20.0, windL=60e3, fjordL=180e3, fjordW=3e3, fjordD=200, endTime=1036800,
             NsqConstant=True, NsqScale=None, infinitex=False,
-            infinitey=False, lat=45):
+            infinitey=False, lat=45, Qnetmax=None):
 
   logging.basicConfig(level=logging.INFO)
 
@@ -487,10 +487,9 @@ def gendata(runnumber, NsqFac=1.0, wind=20.0, windL=60e3, fjordL=180e3, fjordW=3
   with open(indir+'taux.bin', 'wb') as f:
       tau.tofile(f)
 
-  if False:
+  if Qnetmax:
     ################################
     # external heat flux
-    Qnetmax = 500
     Q = tau / taumax * Qnetmax
 
     with open(indir+'Qnet.bin', 'wb') as f:
