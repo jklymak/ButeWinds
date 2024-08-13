@@ -17,7 +17,7 @@ from local_utils import o2sat
 import argparse
 
 def gendata(runnumber, NsqFac=1.0, wind=20.0, windL=60e3, fjordL=180e3, fjordW=3e3, fjordD=200, endTime=1036800,
-            NsqConstant=True, NsqScale=None):
+            NsqConstant=True, NsqScale=None, infinitex=False):
 
   logging.basicConfig(level=logging.INFO)
 
@@ -179,8 +179,9 @@ def gendata(runnumber, NsqFac=1.0, wind=20.0, windL=60e3, fjordL=180e3, fjordW=3
   ##### Dx ######
 
   dx = np.zeros(nx) + dx0
-  for i in range(nx-250, nx):
-      dx[i] = dx[i-1] * 1.025
+  if not infinitex:
+    for i in range(nx-250, nx):
+        dx[i] = dx[i-1] * 1.025
 
 
   # dx = zeros(nx)+100.
@@ -279,6 +280,14 @@ def gendata(runnumber, NsqFac=1.0, wind=20.0, windL=60e3, fjordL=180e3, fjordW=3
 
   print(np.nonzero(~np.isfinite(d)))
   print(d[~np.isfinite(d)])
+
+  # ignore most of above if infinitex:
+  if infinitex:
+    d[0, :] = 0
+    for ind in range(nx):
+      d[:, ind] = d[:, 100]
+
+
 
   with open(indir+"/topog.bin", "wb") as f:
     d.tofile(f)
