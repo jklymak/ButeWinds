@@ -193,10 +193,11 @@ def gendata(runnumber, NsqFac=1.0, wind=20.0, windL=60e3, fjordL=180e3, fjordW=3
   ##### Dy ######
 
   dy = np.ones(ny) * dy0
-  for i in range(int(ny/2) + 20, ny):
-    dy[i] = dy[i-1] * 1.045
-  for i in range(int(ny/2) - 20, 0, -1):
-    dy[i] = dy[i+1] * 1.045
+  if not infinitey:
+    for i in range(int(ny/2) + 20, ny):
+      dy[i] = dy[i-1] * 1.045
+    for i in range(int(ny/2) - 20, 0, -1):
+      dy[i] = dy[i+1] * 1.045
   y=np.cumsum(dy)
   y = y - y[int(ny/2)]
 

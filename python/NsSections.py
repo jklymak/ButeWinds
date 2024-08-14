@@ -39,7 +39,7 @@ if True:
     with xmitgcm.open_mdsdataset(f'../results/{runname}/input/',
                                  endian='<', iters=newiter,
                                  prefix=['spinup', 'spinup2d']) as ds0:
-        ds = ds0.isel(XC=1000, XG=1000)
+        ds = ds0.sel(XC=25e3, XG=25e3, method='nearest')
         ds.to_netcdf(f'../results/{runname}/slices/NsSecCoarse{runname}.nc')
 
 os.system(f"ssh pender.seos.uvic.ca 'mkdir Dropbox/ButeWinds/{runname}/'")
