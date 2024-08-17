@@ -451,11 +451,16 @@ def gendata(runnumber, NsqFac=1.0, wind=20.0, windL=60e3, fjordL=180e3, fjordW=3
   else:
     taut = taut * 0 + taumax
 
-  taux = np.exp(-x/30000)
-  taux = 0.5 - np.tanh((x-windL)/(windL / 2))/2
+  # taux = np.exp(-x/30000)
+  if not infinitex:
+    taux = 0.5 - np.tanh((x-windL)/(windL / 2))/2
 
-  taux = np.broadcast_to(taux[np.newaxis, :], (ny, nx))
-  tt = taux.copy()
+    taux = np.broadcast_to(taux[np.newaxis, :], (ny, nx))
+    tt = taux.copy()
+  else:
+    tt = 0 * x + 1.0
+    tt = np.broadcast_to(tt[np.newaxis, :], (ny, nx))
+
   # set tau =0 outside width of fjord (to stop whole basin from getting a wind.)
   if False:
     for yind in range(ny):
@@ -468,7 +473,6 @@ def gendata(runnumber, NsqFac=1.0, wind=20.0, windL=60e3, fjordL=180e3, fjordW=3
 
 
   if True:
-    print(taux)
     tau = taut[:, np.newaxis, np.newaxis] * tt[np.newaxis, ...]
     print(np.shape(tau))
     fig, ax = plt.subplots(2, 1)
