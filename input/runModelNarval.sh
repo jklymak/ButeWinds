@@ -4,7 +4,7 @@
 #SBATCH --mail-type=ALL
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=64
-#SBATCH --time=0-24:10
+#SBATCH --time=0-36:10
 #SBATCH --mem=0
 
 # sbatch --job-name={todo} runModelNarval.sh
@@ -15,8 +15,8 @@
 # module load netcdf-fortran-mpi/4.5.2
 # module load python/3.9.6
 start=0
-stop=432100
-dt=6
+stop=691209
+dt=3
 
 cd ${SLURM_SUBMIT_DIR}
 
